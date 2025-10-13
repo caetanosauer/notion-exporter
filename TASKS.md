@@ -21,10 +21,10 @@
 ## Phase 2: Core Implementation
 
 ### Configuration & Authentication
-- [ ] Create config.py module for API key handling
-  - [ ] Support NOTION_TOKEN environment variable
-  - [ ] Support reading from ~/.ssh/secret.env
-  - [ ] Add validation and error messages
+- [x] Create config.py module for API key handling
+  - [x] Support NOTION_TOKEN environment variable
+  - [x] Support reading from ~/.ssh/secret.env
+  - [x] Add validation and error messages
 - [ ] Implement Notion client connection
 - [ ] Test authentication with simple API call
 
