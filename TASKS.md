@@ -74,54 +74,54 @@
 - [x] Commit dry-run feature
 
 ### Non-Exportable Features Report
-- [ ] Create reporter.py module
-- [ ] Track unsupported block types
-- [ ] Track unsupported features in blocks
-- [ ] Generate report.md with:
-  - [ ] List of unsupported features
-  - [ ] Page locations where they occur
-  - [ ] Suggestions for manual conversion
-- [ ] Commit reporter module
+- [x] Create reporter.py module
+- [x] Track unsupported block types
+- [x] Track unsupported features in blocks
+- [x] Generate report.md with:
+  - [x] List of unsupported features
+  - [x] Page locations where they occur
+  - [x] Suggestions for manual conversion
+- [x] Commit reporter module
 
 ### Database Export
-- [ ] Implement database query functionality
-- [ ] Extract database schema (columns)
-- [ ] Extract database rows
-- [ ] Convert to markdown table format
-- [ ] Handle different property types:
-  - [ ] Text
-  - [ ] Number
-  - [ ] Select/Multi-select
-  - [ ] Date
-  - [ ] Person
-  - [ ] Checkbox
-  - [ ] URL
-  - [ ] Email
-  - [ ] Phone
-- [ ] Add note about complex properties
-- [ ] Commit database converter
+- [x] Implement database query functionality
+- [x] Extract database schema (columns)
+- [x] Extract database rows
+- [x] Convert to markdown table format
+- [x] Handle different property types:
+  - [x] Text
+  - [x] Number
+  - [x] Select/Multi-select
+  - [x] Date
+  - [x] Person
+  - [x] Checkbox
+  - [x] URL
+  - [x] Email
+  - [x] Phone
+- [x] Add note about complex properties
+- [x] Commit database converter
 
 ### Error Handling & Progress
-- [ ] Add comprehensive try-catch blocks
-- [ ] Implement logging module
-- [ ] Add progress bar for exports
-- [ ] Show current page being processed
-- [ ] Continue on errors (don't fail entire export)
-- [ ] Collect and report errors at end
-- [ ] Commit error handling
+- [x] Add comprehensive try-catch blocks
+- [x] Implement logging module
+- [x] Add progress bar for exports
+- [x] Show current page being processed
+- [x] Continue on errors (don't fail entire export)
+- [x] Collect and report errors at end
+- [x] Commit error handling
 
 ## Phase 4: CLI & Polish
 
 ### Command-Line Interface
-- [ ] Create main.py with argparse
-- [ ] Add arguments:
-  - [ ] --dry-run: Preview mode
-  - [ ] --output: Output directory (default: notion/)
-  - [ ] --verbose: Verbose logging
-  - [ ] --page-id: Export specific page (optional)
-  - [ ] --include-databases: Include database exports
-- [ ] Add help text for all arguments
-- [ ] Commit CLI implementation
+- [x] Create main.py with argparse
+- [x] Add arguments:
+  - [x] --dry-run: Preview mode
+  - [x] --output: Output directory (default: notion/)
+  - [x] --verbose: Verbose logging
+  - [x] --page-id: Export specific page (optional)
+  - [x] --include-databases: Include database exports
+- [x] Add help text for all arguments
+- [x] Commit CLI implementation
 
 ### Testing & Refinement
 - [ ] Test with simple page structure
