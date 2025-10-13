@@ -25,53 +25,53 @@
   - [x] Support NOTION_TOKEN environment variable
   - [x] Support reading from ~/.ssh/secret.env
   - [x] Add validation and error messages
-- [ ] Implement Notion client connection
-- [ ] Test authentication with simple API call
+- [x] Implement Notion client connection
+- [x] Test authentication with simple API call
 
 ### Page Hierarchy Traversal
-- [ ] Create hierarchy.py module
-- [ ] Implement recursive page discovery function
-- [ ] Build page tree data structure
-- [ ] Handle child pages vs nested blocks
-- [ ] Add pagination support for large workspaces
-- [ ] Commit hierarchy traversal
+- [x] Create hierarchy.py module
+- [x] Implement recursive page discovery function
+- [x] Build page tree data structure
+- [x] Handle child pages vs nested blocks
+- [x] Add pagination support for large workspaces
+- [x] Commit hierarchy traversal
 
 ### Markdown Conversion
-- [ ] Create markdown_converter.py module
-- [ ] Implement block-to-markdown converters:
-  - [ ] Paragraph blocks
-  - [ ] Heading blocks (h1, h2, h3)
-  - [ ] Bulleted list items
-  - [ ] Numbered list items
-  - [ ] To-do items (checkboxes)
-  - [ ] Code blocks
-  - [ ] Quote blocks
-  - [ ] Callout blocks
-  - [ ] Divider blocks
-  - [ ] Toggle blocks
-  - [ ] Rich text formatting (bold, italic, code, links)
-- [ ] Handle unsupported blocks gracefully
-- [ ] Commit markdown converter
+- [x] Create markdown_converter.py module
+- [x] Implement block-to-markdown converters:
+  - [x] Paragraph blocks
+  - [x] Heading blocks (h1, h2, h3)
+  - [x] Bulleted list items
+  - [x] Numbered list items
+  - [x] To-do items (checkboxes)
+  - [x] Code blocks
+  - [x] Quote blocks
+  - [x] Callout blocks
+  - [x] Divider blocks
+  - [x] Toggle blocks
+  - [x] Rich text formatting (bold, italic, code, links)
+- [x] Handle unsupported blocks gracefully
+- [x] Commit markdown converter
 
 ### File System Operations
-- [ ] Create exporter.py module
-- [ ] Implement folder structure creation logic:
-  - [ ] Create notion/ root directory
-  - [ ] Create folders for pages with children
-  - [ ] Create index.md for parent page content
-  - [ ] Create .md files for leaf pages
-- [ ] Implement safe filename generation (sanitize special chars)
-- [ ] Handle duplicate page names
-- [ ] Commit file system operations
+- [x] Create exporter.py module
+- [x] Implement folder structure creation logic:
+  - [x] Create notion/ root directory
+  - [x] Create folders for pages with children
+  - [x] Create index.md for parent page content
+  - [x] Create .md files for leaf pages
+- [x] Implement safe filename generation (sanitize special chars)
+- [x] Handle duplicate page names
+- [x] Commit file system operations
 
 ## Phase 3: Advanced Features
 
 ### Dry-Run Mode
-- [ ] Add dry-run flag to CLI
-- [ ] Implement hierarchical text preview
-- [ ] Show what files/folders would be created
-- [ ] Display tree structure
-- [ ] Commit dry-run feature
+- [x] Add dry-run flag to CLI
+- [x] Implement hierarchical text preview
+- [x] Show what files/folders would be created
+- [x] Display tree structure
+- [x] Commit dry-run feature
 
 ### Non-Exportable Features Report
 - [ ] Create reporter.py module
