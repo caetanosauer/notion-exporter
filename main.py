@@ -11,7 +11,7 @@ from pathlib import Path
 from typing import Optional
 
 import config
-from notion_client import create_client
+from client_wrapper import create_client
 from exporter import export_notion_workspace
 from reporter import generate_feature_report
 

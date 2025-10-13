@@ -118,10 +118,8 @@ def validate_token(token: str) -> bool:
     if not token:
         return False
 
-    # Notion tokens typically start with "secret_" and are quite long
-    if not token.startswith('secret_'):
-        return False
-
+    # Notion tokens are typically quite long
+    # Note: Don't check prefix as format may vary
     if len(token) < 20:
         return False
 
@@ -143,7 +141,7 @@ def get_validated_token() -> str:
     if not validate_token(token):
         raise ConfigError(
             "The Notion token appears to be invalid.\n"
-            "Tokens should start with 'secret_' and be quite long.\n"
+            "Tokens should be at least 20 characters long.\n"
             "Please check your token and try again."
         )
 

@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Dict, List, Optional, Set
 from hierarchy import PageNode
 from markdown_converter import MarkdownConverter
-from notion_client import NotionClientWrapper
+from client_wrapper import NotionClientWrapper
 
 
 class ExportStats:
@@ -370,7 +370,7 @@ def export_notion_workspace(
 
 if __name__ == '__main__':
     """Test the exporter."""
-    from notion_client import create_client
+    from client_wrapper import create_client
 
     print("Testing exporter with dry run...")
 

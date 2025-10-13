@@ -7,7 +7,7 @@ tree structure of Notion pages and their relationships.
 
 from typing import List, Dict, Optional, Set
 from dataclasses import dataclass, field
-from notion_client import NotionClientWrapper
+from client_wrapper import NotionClientWrapper
 
 
 @dataclass
@@ -316,7 +316,7 @@ if __name__ == '__main__':
     print()
 
     try:
-        from notion_client import create_client
+        from client_wrapper import create_client
 
         client = create_client()
 

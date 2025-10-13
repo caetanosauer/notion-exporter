@@ -6,7 +6,7 @@ Markdown table format.
 """
 
 from typing import List, Dict, Any, Optional
-from notion_client import NotionClientWrapper
+from client_wrapper import NotionClientWrapper
 
 
 def extract_property_value(prop: Dict, prop_type: str) -> str:
@@ -271,7 +271,7 @@ def export_database_to_file(
 
 if __name__ == '__main__':
     """Test the database exporter."""
-    from notion_client import create_client
+    from client_wrapper import create_client
 
     print("Database Exporter Test")
     print("=" * 60)
