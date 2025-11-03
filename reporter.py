@@ -52,17 +52,37 @@ class ExportReport:
             key = f"{feature.block_type}.{feature.feature}"
             by_type[key].append(feature)
 
+        # Check if there are databases
+        database_count = len(by_type.get("child_database.not_exported", []))
+
         # Generate report
         lines = [
-            "# Unsupported Features Report",
+            "# Export Report",
             "",
             "This report lists Notion features that could not be fully exported to Markdown.",
             "",
             f"**Total unsupported features:** {len(self.unsupported_features)}",
             "",
+        ]
+
+        # Special section for databases
+        if database_count > 0:
+            lines.extend([
+                "## Databases Not Exported",
+                "",
+                f"**{database_count} database(s)** were found but not exported.",
+                "",
+                "Databases can be exported using the `--include-databases` flag:",
+                "```",
+                "python3 main.py --include-databases",
+                "```",
+                "",
+            ])
+
+        lines.extend([
             "---",
             "",
-        ]
+        ])
 
         # Summary section
         lines.extend([

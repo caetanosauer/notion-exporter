@@ -22,6 +22,7 @@ class ExportStats:
         self.files_created = 0
         self.folders_created = 0
         self.errors: List[tuple] = []  # (page_id, error_message)
+        self.unsupported_features: List = []  # Will be populated from converter
 
     def add_error(self, page_id: str, error: str):
         """Record an error."""
@@ -103,7 +104,8 @@ class Exporter:
         self,
         client: NotionClientWrapper,
         output_dir: Path,
-        dry_run: bool = False
+        dry_run: bool = False,
+        include_databases: bool = False
     ):
         """
         Initialize the exporter.
@@ -112,11 +114,14 @@ class Exporter:
             client: Notion client wrapper
             output_dir: Root directory for export
             dry_run: If True, don't actually create files
+            include_databases: If True, export databases (and don't report them as unsupported)
         """
         self.client = client
         self.output_dir = Path(output_dir)
         self.dry_run = dry_run
-        self.converter = MarkdownConverter()
+        self.include_databases = include_databases
+        # Track skipped databases only when NOT including them
+        self.converter = MarkdownConverter(track_skipped_databases=not include_databases)
         self.stats = ExportStats()
         self.used_paths: Set[str] = set()
 
@@ -277,6 +282,9 @@ class Exporter:
         for root in roots:
             self.export_node(root, self.output_dir, verbose)
 
+        # Copy unsupported features from converter to stats
+        self.stats.unsupported_features = self.converter.unsupported_features
+
         return self.stats
 
     def print_dry_run_tree(self, roots: List[PageNode]) -> None:
@@ -322,7 +330,8 @@ def export_notion_workspace(
     output_dir: str,
     page_id: Optional[str] = None,
     dry_run: bool = False,
-    verbose: bool = False
+    verbose: bool = False,
+    include_databases: bool = False
 ) -> ExportStats:
     """
     Main export function for Notion workspace.
@@ -333,6 +342,7 @@ def export_notion_workspace(
         page_id: Optional specific page ID to export
         dry_run: If True, only show what would be done
         verbose: Show detailed progress
+        include_databases: If True, export databases
 
     Returns:
         ExportStats object
@@ -350,7 +360,7 @@ def export_notion_workspace(
         return ExportStats()
 
     # Create exporter
-    exporter = Exporter(client, Path(output_dir), dry_run=dry_run)
+    exporter = Exporter(client, Path(output_dir), dry_run=dry_run, include_databases=include_databases)
 
     # Dry run preview
     if dry_run:

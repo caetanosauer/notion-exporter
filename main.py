@@ -163,7 +163,8 @@ def main():
             output_dir=args.output,
             page_id=args.page_id,
             dry_run=args.dry_run,
-            verbose=args.verbose
+            verbose=args.verbose,
+            include_databases=args.include_databases
         )
 
         # Print stats (if not dry-run)
@@ -171,15 +172,27 @@ def main():
             print_stats(stats, args.verbose)
 
             # Generate report about unsupported features
-            if args.verbose:
-                print("Generating export report...")
-
             output_path = Path(args.output)
-            # Note: We'd need to collect unsupported features from the converter
-            # For now, just indicate success
             report_path = output_path / "export_report.md"
-            if report_path.exists():
-                print(f"✓ Export report saved to: {report_path}")
+
+            if stats.unsupported_features:
+                if args.verbose:
+                    print("Generating export report...")
+
+                success = generate_feature_report(
+                    output_dir=output_path,
+                    unsupported_features=stats.unsupported_features
+                )
+
+                if success:
+                    print(f"✓ Export report saved to: {report_path}")
+
+                    # Show summary of databases if any were skipped
+                    db_count = sum(1 for f in stats.unsupported_features
+                                  if f.block_type == "child_database")
+                    if db_count > 0:
+                        print(f"⚠ {db_count} database(s) were not exported (see report for details)")
+                        print(f"  Tip: Use --include-databases to export them")
 
             if stats.pages_exported > 0:
                 print(f"✓ Files saved to: {args.output}/")

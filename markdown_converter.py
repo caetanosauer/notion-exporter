@@ -23,8 +23,9 @@ class UnsupportedFeature:
 class MarkdownConverter:
     """Converts Notion blocks to Markdown format."""
 
-    def __init__(self):
+    def __init__(self, track_skipped_databases: bool = True):
         self.unsupported_features: List[UnsupportedFeature] = []
+        self.track_skipped_databases = track_skipped_databases
 
     def add_unsupported(self, block_type: str, feature: str, block_id: str):
         """Record an unsupported feature."""
@@ -319,6 +320,8 @@ class MarkdownConverter:
 
         elif block_type == "child_database":
             # Child databases are handled separately
+            if self.track_skipped_databases:
+                self.add_unsupported("child_database", "not_exported", block_id)
             return "", True
 
         elif block_type == "table":
