@@ -20,6 +20,8 @@ class PageNode:
     children: List['PageNode'] = field(default_factory=list)
     is_database: bool = False
     has_content: bool = True  # Whether the page has any block content
+    created_time: Optional[str] = None
+    last_edited_time: Optional[str] = None
 
     def __repr__(self) -> str:
         child_count = len(self.children)
@@ -176,7 +178,9 @@ def build_page_tree(
             page_id=page_id,
             title=title,
             parent_id=parent_id,
-            is_database=is_database
+            is_database=is_database,
+            created_time=page.get("created_time"),
+            last_edited_time=page.get("last_edited_time")
         )
 
         # Discover child pages

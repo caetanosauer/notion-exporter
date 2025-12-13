@@ -6,11 +6,43 @@ filename sanitization, and markdown file writing.
 """
 
 import re
+from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional, Set
 from hierarchy import PageNode
 from markdown_converter import MarkdownConverter
 from client_wrapper import NotionClientWrapper
+
+
+def generate_frontmatter(node: PageNode) -> str:
+    """
+    Generate YAML front matter for a page.
+
+    Args:
+        node: PageNode with metadata
+
+    Returns:
+        YAML front matter string
+    """
+    # Escape quotes in title
+    safe_title = node.title.replace('"', '\\"')
+
+    # Get current date for export_date
+    export_date = datetime.now().strftime("%Y-%m-%d")
+    export_month = datetime.now().strftime("%B %Y")
+
+    lines = [
+        "---",
+        f'title: "{safe_title}"',
+        f'source: "Exported from Notion, {export_month}"',
+        f"export_date: {export_date}",
+        f"notion_id: {node.page_id}",
+        f"created: {node.created_time or 'unknown'}",
+        f"last_edited: {node.last_edited_time or 'unknown'}",
+        "---",
+        "",
+    ]
+    return "\n".join(lines)
 
 
 class ExportStats:
@@ -222,6 +254,10 @@ class Exporter:
 
         if content is None:
             return False
+
+        # Prepend front matter
+        frontmatter = generate_frontmatter(node)
+        content = frontmatter + content
 
         # Determine file structure based on children
         if node.children:
